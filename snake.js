@@ -3,7 +3,7 @@ function Snake(){
 	this.directionOfSnake = "right";
 	this.xSpeed = 2;
 	this.ySpeed = 0;
-	this.multiplier = 5;
+	this.multiplier = 10;
 	this.tail = [];
 	this.tailCounter = 0;
 
@@ -73,6 +73,11 @@ function Snake(){
 		
 	};
 
+	this.whichDirectionSnakeIsGoing = function(x, y) {
+		this.xSpeed = x;
+		this.ySpeed = y;
+	}
+
 	this.eatFood = function() {
 		var d = dist(this.position.x, this.position.y, food.position.x, food.position.y)
 		if(d < 20){
@@ -81,9 +86,21 @@ function Snake(){
 		}
 	};
 
-	this.whichDirectionSnakeIsGoing = function(x, y) {
-		this.xSpeed = x;
-		this.ySpeed = y;
+	this.isSnakeDead = function() {
+		for(var i = 0; i < this.tail.length; i++){
+
+			var d = dist(this.position.x, this.position.y, this.tail[i].x, this.tail[i].y)
+
+			if(d < 10){
+				frameRate(0.1)
+				console.log("game over")
+			}
+		}
 	}
+
+	this.grow = function(){
+		this.tailCounter++
+	}
+
 };
 

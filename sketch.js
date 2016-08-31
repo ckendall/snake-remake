@@ -1,4 +1,5 @@
 var snake, food, button, gameStart;
+var rate = 10;
 
 function setup() {
 	var test = $('#my-container')
@@ -11,7 +12,7 @@ function setup() {
 	button.parent('my-container')
 	button.position(test.width()/2 - 25, test.height()/2);
 	button.mousePressed(startTheGame)
-	frameRate(20)
+	frameRate(rate)
 	snake = new Snake;
 	food = new Food;
 	food.createPosition();
@@ -28,6 +29,7 @@ function draw() {
 		snake.draw();
 		snake.update();
 		snake.eatFood();
+		snake.isSnakeDead();
 		
 	}else{
 		background(51)
@@ -51,6 +53,8 @@ function keyPressed(direction) {
 	}else if(direction.key === "ArrowLeft"){
 
 		snake.direction(direction, -2, 0)
+	}else if (keyCode === OPTION){
+		snake.grow();
 	}
 };
 
