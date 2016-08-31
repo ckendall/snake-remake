@@ -1,10 +1,15 @@
-var snake, food, button, gameStart, last;
+var snake, food, button, gameStart;
 
 function setup() {
+	var test = $('#my-container')
+
 	gameStart = false;
-	createCanvas(600, 500);
+	myCanvas = createCanvas(600, 500);
+	myCanvas.parent('my-container')
+	myCanvas.position(test.width() - (width + 200), test.height()/2 - (height - 250))
 	button = createButton("Start the Game")
-	button.position(width/2 - 30, height/2);
+	button.parent('my-container')
+	button.position(test.width()/2 - 25, test.height()/2);
 	button.mousePressed(startTheGame)
 	frameRate(20)
 	snake = new Snake;
@@ -31,14 +36,22 @@ function draw() {
 };
 
 function keyPressed(direction) {
+	if(direction.key === "ArrowUp"){
 
-	snake.direction(direction)
+			snake.direction(direction, 0, -2)
 
- 	if(keyCode === OPTION){
-		snake.incre();
+	}else if(direction.key === "ArrowDown"){
+
+		snake.direction(direction, 0, 2)
+
+	}else if(direction.key === "ArrowRight"){
+
+		snake.direction(direction, 2, 0)
+
+	}else if(direction.key === "ArrowLeft"){
+
+		snake.direction(direction, -2, 0)
 	}
-	
-	last = direction.key
 };
 
 function startTheGame() {

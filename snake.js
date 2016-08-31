@@ -1,8 +1,9 @@
 function Snake(){
 	this.position = createVector(width/2, height/2);
-	this.direction = "right"
+	this.directionOfSnake = "right";
 	this.xSpeed = 2;
 	this.ySpeed = 0;
+	this.multiplier = 5;
 	this.tail = [];
 	this.tailCounter = 0;
 
@@ -42,13 +43,31 @@ function Snake(){
 			this.position.y = height;
 		};
 
-		this.position.x += this.xSpeed * 5;
-		this.position.y += this.ySpeed * 5;
+		this.position.x += this.xSpeed * this.multiplier;
+		this.position.y += this.ySpeed * this.multiplier;
 	};
 
-	this.direction = function(keyForDirection){
-		console.log(keyForDirection)
-		if (keyForDirection === this.direction === "right"){
+	this.direction = function(keyForDirection, x, y){
+
+		if (keyForDirection.key === "ArrowRight" && this.directionOfSnake != "left"){
+
+			this.whichDirectionSnakeIsGoing(x, y)
+			this.directionOfSnake = "right"
+		
+		}else if(keyForDirection.key === "ArrowLeft" && this.directionOfSnake != "right"){
+
+			this.whichDirectionSnakeIsGoing(x, y)
+			this.directionOfSnake = "left"
+		
+		}else if(keyForDirection.key === "ArrowUp" && this.directionOfSnake != "down"){
+
+			this.whichDirectionSnakeIsGoing(x, y)
+			this.directionOfSnake = "up"
+
+		}else if(keyForDirection.key === "ArrowDown" && this.directionOfSnake != "up"){
+
+			this.whichDirectionSnakeIsGoing(x, y)
+			this.directionOfSnake = "down"
 
 		}
 		
@@ -62,8 +81,9 @@ function Snake(){
 		}
 	};
 
-	this.incre = function() {
-		this.tailCounter++
+	this.whichDirectionSnakeIsGoing = function(x, y) {
+		this.xSpeed = x;
+		this.ySpeed = y;
 	}
 };
 

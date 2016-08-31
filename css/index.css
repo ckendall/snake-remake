@@ -1,0 +1,13 @@
+#my-container {
+	height: 100%;
+	width: 100%;
+	background-color: #3d0099
+}
+
+.instructions{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 0px;
+	color: white;
+}
