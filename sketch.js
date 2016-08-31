@@ -1,4 +1,4 @@
-var snake, food, button, gameStart;
+var snake, food, button, gameStart, last;
 
 function setup() {
 	gameStart = false;
@@ -6,6 +6,7 @@ function setup() {
 	button = createButton("Start the Game")
 	button.position(width/2 - 30, height/2);
 	button.mousePressed(startTheGame)
+	frameRate(20)
 	snake = new Snake;
 	food = new Food;
 	food.createPosition();
@@ -29,25 +30,15 @@ function draw() {
 	}
 };
 
-function keyPressed() {
+function keyPressed(direction) {
 
-	if(keyCode === UP_ARROW){
+	snake.direction(direction)
 
-		snake.direction(0, -2)
-
-	}else if(keyCode === DOWN_ARROW){
-
-		snake.direction(0, 2)
-
-	}else if(keyCode === RIGHT_ARROW){
-
-		snake.direction(2, 0)
-
-	}else if(keyCode === LEFT_ARROW){
-
-		snake.direction(-2, 0)
-
+ 	if(keyCode === OPTION){
+		snake.incre();
 	}
+	
+	last = direction.key
 };
 
 function startTheGame() {
