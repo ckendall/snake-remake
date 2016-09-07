@@ -4,6 +4,11 @@
 	background-color: #3d0099
 }
 
+#defaultCanvas0{
+	margin: 50px 20% auto;
+	position: relative;
+
+}
 .instructions{
 	position: absolute;
 	width: 100%;
@@ -11,3 +16,4 @@
 	bottom: 0px;
 	color: white;
 }
+

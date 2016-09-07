@@ -47,7 +47,7 @@ function Snake(){
 		this.position.y += this.ySpeed * this.multiplier;
 	};
 
-	this.direction = function(keyForDirection, x, y){
+	this.movement = function(keyForDirection, x, y){
 
 		if (keyForDirection.key === "ArrowRight" && this.directionOfSnake != "left"){
 

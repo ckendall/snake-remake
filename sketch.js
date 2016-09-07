@@ -9,15 +9,13 @@ function setup() {
 
 	myCanvas = createCanvas(600, 500);
 	myCanvas.parent('my-container')
-	myCanvas.position(50 , 50)
 
 	button = createButton("Start the Game")
-	button.parent('my-container')
-	button.position(width/2, height/2);
+	button.position(test.width()/2, height/2);
 	button.mousePressed(startTheGame)
 
 	restartButton = createButton("Play Again?")
-	restartButton.position(width/2, height/2);
+	restartButton.position(test.width()/2, height/2);
 	restartButton.hide();
 
 	frameRate(rate)
@@ -52,19 +50,19 @@ function draw() {
 function keyPressed(direction) {
 	if(direction.key === "ArrowUp"){
 
-			snake.direction(direction, 0, -2)
+			snake.movement(direction, 0, -2)
 
 	}else if(direction.key === "ArrowDown"){
 
-		snake.direction(direction, 0, 2)
+		snake.movement(direction, 0, 2)
 
 	}else if(direction.key === "ArrowRight"){
 
-		snake.direction(direction, 2, 0)
+		snake.movement(direction, 2, 0)
 
 	}else if(direction.key === "ArrowLeft"){
 
-		snake.direction(direction, -2, 0)
+		snake.movement(direction, -2, 0)
 	}
 };
 
