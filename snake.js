@@ -92,14 +92,9 @@ function Snake(){
 			var d = dist(this.position.x, this.position.y, this.tail[i].x, this.tail[i].y)
 
 			if(d < 10){
-				frameRate(0.1)
-				console.log("game over")
+				snakeDead = true;
 			}
 		}
-	}
-
-	this.grow = function(){
-		this.tailCounter++
 	}
 
 };

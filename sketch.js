@@ -1,17 +1,25 @@
-var snake, food, button, gameStart;
+var snake, food, button, restartButton, gameStart, snakeDead;
 var rate = 10;
 
 function setup() {
 	var test = $('#my-container')
 
+	snakeDead = false;
 	gameStart = false;
+
 	myCanvas = createCanvas(600, 500);
 	myCanvas.parent('my-container')
-	myCanvas.position(test.width() - (width + 200), test.height()/2 - (height - 250))
+	myCanvas.position(50 , 50)
+
 	button = createButton("Start the Game")
 	button.parent('my-container')
-	button.position(test.width()/2 - 25, test.height()/2);
+	button.position(width/2, height/2);
 	button.mousePressed(startTheGame)
+
+	restartButton = createButton("Play Again?")
+	restartButton.position(width/2, height/2);
+	restartButton.hide();
+
 	frameRate(rate)
 	snake = new Snake;
 	food = new Food;
@@ -19,8 +27,9 @@ function setup() {
 };
 
 function draw() {
-	if (gameStart){
+	if (gameStart && snakeDead === false){
 		button.hide();
+		restartButton.hide();
 		background(51);
 
 		fill('rgba(100%,0%,100%,0.5)');
@@ -31,6 +40,9 @@ function draw() {
 		snake.eatFood();
 		snake.isSnakeDead();
 		
+	}else if(snakeDead){
+		restartButton.show();
+		restartButton.mousePressed(restartTheGame)
 	}else{
 		background(51)
 		button.show();
@@ -53,8 +65,6 @@ function keyPressed(direction) {
 	}else if(direction.key === "ArrowLeft"){
 
 		snake.direction(direction, -2, 0)
-	}else if (keyCode === OPTION){
-		snake.grow();
 	}
 };
 
@@ -62,4 +72,12 @@ function startTheGame() {
 	gameStart = true;
 	background(51);
 
+}
+
+function restartTheGame() {
+	snakeDead = false;
+	snake = new Snake;
+	food = new Food;
+	food.createPosition();
+	draw();
 }
